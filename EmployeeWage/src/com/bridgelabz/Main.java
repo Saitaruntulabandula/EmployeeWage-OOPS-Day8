@@ -5,21 +5,17 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		int totalWage = 0;
-		System.out.println("Welcome to EmployeeWage Computation..... \n");
-		EmployeeWage employeeWage = new EmployeeWage();
-		System.out.println("Enter below details \n  Employee Wage per hour \n  Employee Full Time Hour \n  Part Time Hour \n");
-		Scanner scanner = new Scanner(System.in);
-		int wagePerHour = scanner.nextInt();
-		int fullTimeEmpHrs = scanner.nextInt();
-		int partTimeEmpHrs = scanner.nextInt();
-		for (int i =1;i<=20;i++) {
-			int attendance = employeeWage.checkAttendance();
-			int monthly = EmployeeWage.monthlyWage(attendance,wagePerHour,fullTimeEmpHrs,partTimeEmpHrs);
-			totalWage = monthly + totalWage;
-			System.out.println("Wage till date " + i + " is " +totalWage+ "\n");
-		}
-		System.out.println("Monthly wage is : " +totalWage);
-		scanner.close();
+		EmployeeWage employeeWage = new EmployeeWage("Amazon", 300, 25, 200);
+		EmployeeWage employeeWage2 = new EmployeeWage("Delloite", 250, 30, 200);
+		EmployeeWage employeeWage3 = new EmployeeWage("Microsoft", 280, 28, 200);
+
+		employeeWage.calculateTotalWage();
+		employeeWage.display();
+
+		employeeWage2.calculateTotalWage();
+		employeeWage2.display();
+
+		employeeWage3.calculateTotalWage();
+		employeeWage3.display();
 	}
 }
