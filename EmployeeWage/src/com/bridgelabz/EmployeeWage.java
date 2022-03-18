@@ -1,7 +1,6 @@
 package com.bridgelabz;
 
 public class EmployeeWage {
-
 	static final int IS_FULL_TIME = 1;
 	static final int IS_PART_TIME = 2;
 	int noOfCompanies, index;
@@ -14,7 +13,7 @@ public class EmployeeWage {
 		index = 0;
 	}
 
-	void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
+	public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
 	{
 		companies[index++] = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
 	}
@@ -37,7 +36,7 @@ public class EmployeeWage {
 		}
 	}
 
-	void calculateTotalWage()
+	public void calculateTotalWage()
 	{
 		for (CompanyEmpWage company : companies)
 		{
