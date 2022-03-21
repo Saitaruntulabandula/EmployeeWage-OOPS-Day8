@@ -1,21 +1,24 @@
 package com.bridgelabz;
-
-public class EmployeeWage {
+import java.util.ArrayList;
+import java.util.HashMap;
+public class EmployeeWage implements EmpWage {
 	static final int IS_FULL_TIME = 1;
 	static final int IS_PART_TIME = 2;
-	int noOfCompanies, index;
-	CompanyEmpWage[] companies;
 
-	public EmployeeWage(int noOfCompanies)
+	ArrayList<CompanyEmpWage> companies;
+	HashMap<String, Integer> totalEmpWage;
+
+	public EmployeeWage()
 	{
-		this.noOfCompanies = noOfCompanies;
-		companies = new CompanyEmpWage[noOfCompanies];
-		index = 0;
+		companies = new ArrayList<>();
+		totalEmpWage = new HashMap<>();
 	}
 
 	public void addCompany(String companyName, int wagePerHr, int maxWorkingDays, int maxWorkingHrs)
 	{
-		companies[index++] = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(companyName, wagePerHr, maxWorkingDays, maxWorkingHrs);
+		companies.add(companyEmpWage);
+		totalEmpWage.put(companyName, 0);
 	}
 
 	int generateEmployeeType()
@@ -62,6 +65,20 @@ public class EmployeeWage {
 			totalWage += wage;
 			System.out.println(day+"		" +workingHrs +"		"+wage+"		"+(totalWorkingHrs + workingHrs));
 		}
+		totalEmpWage.put(companyEmpWage.companyName, totalWage);
 		return totalWage;
+	}
+
+	void displayTotalEmpWages() {
+		System.out.println("\nCompany and total Emp Wage are as follows : \n");
+		for (String companyName : totalEmpWage.keySet()) {
+			System.out.println(companyName+ " ---> " + totalEmpWage.get(companyName));
+		}
+	}
+	public Integer getCompanyEmpWage(String companyName) {
+		if (totalEmpWage.containsKey(companyName))
+			return totalEmpWage.get(companyName);
+
+		return null;
 	}
 }
